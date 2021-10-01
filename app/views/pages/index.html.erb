@@ -1,0 +1,80 @@
+<style>
+form{
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  text-align: center;
+}
+form label {
+  font-size: larger;
+  padding: 10px;
+}
+input {
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+}
+.btn_new{
+display: block;
+width: 150px;
+background: #13b70d;
+text-align: center;
+border-radius: 5px;
+padding: 10px;
+font-size: large;
+color: white;
+}
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25),0 10px 10px rgba(0,0,0,0.22);
+  overflow: hidden;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+  padding: 5px;
+}
+</style>
+<div class='container'>
+  <% flash.each do |type, msg| %>
+    <div>
+      <%= msg %>
+    </div>
+  <% end %>
+  <h1 style='text-align:center'>Generaci&oacute;n de QR</h1>
+  <div>
+    <%= form_tag :pages_qr_code_download, method: :get do |f| %>
+        <%= label_tag 'Nombre' %>
+        <%= text_field_tag :nombre, nil, required: true %>
+        <%= label_tag 'Apellido Paterno' %>
+        <%= text_field_tag :apellido_paterno, nil, required: true %>
+
+        <%= label_tag 'Apellido Materno' %>
+        <%= text_field_tag :apellido_materno, nil %>
+
+        <%= label_tag 'Carnet Identidad' %>
+        <%= text_field_tag :ci, nil, required: true %>
+
+        <label>Observaci&oacute;n</label>
+        <%= text_field_tag :observacion, nil, required: true %>
+
+      <div class="actions">
+        <%= submit_tag 'Generate QR code', style: 'cursor:pointer' %>
+      </div>
+    <% end %>
+  </div>
+  <div style="width:150px; margin:auto;padding: 10px">
+
+    <%= link_to("Nuevo",root_path,class: 'btn_new') %>
+  </div>
+</div>
