@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2021_09_30_230040) do
     t.string "ci"
     t.string "observacion"
     t.string "uuid_secure"
+    t.text "qr_string"
+    t.integer "current_user_id", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
